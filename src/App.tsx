@@ -1,38 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import TodoForm from './components/TodoForm';
-import EditForm from './components/EditForm';
-import TodoList from './components/TodoList';
-import { ITodo } from './interface/interface';
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import HomeScreen from "./screens/HomeScreen";
+import { lightTheme } from "./styles";
 
 const App = () => {
-  const [todos, setTodos] = useState<ITodo[]>([]);
-
-  const onFormSubmit = (props: any) => {
-    const todo = {
-      todoId: todos.length,
-      todoTitle: props.todoTitle,
-      todoDueDate: props.todoDueDate,
-      todoDesc: props.todoDesc,
-      todoStatus: 'todo',
-    };
-    setTodos([...todos, todo]);
-  };
-
-  const [mode, setMode] = useState('read');
-  if (mode === 'read') {
-    return (
-      <div>
-        <TodoForm title='Add' onFormSubmit={onFormSubmit} />
-        <TodoList todos={todos} />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <EditForm />
-      </div>
-    );
-  }
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <HomeScreen />
+    </ThemeProvider>
+  );
 };
 
 export default App;
